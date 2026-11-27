@@ -1,3 +1,39 @@
 .time-line-container>div:last-child .education__time>.education__line {
     display: none;
 }
+
+/* Faint red glow rising from the bottom of the window.
+   Fixed to the viewport so it stays put while content scrolls over it.
+   z-index -1 inside the isolated .drawer-content keeps it above the page
+   background but behind all text and images. */
+.bg-glow {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        ellipse 90% 60% at 50% 100%,
+        oklch(var(--p) / 0.13) 0%,
+        oklch(var(--p) / 0.05) 45%,
+        transparent 75%
+    );
+}
+
+/* Matching glow for the sidebar, shifted from the brand red toward the
+   sidebar's mauve-gray tone (hue ~355 instead of ~16, lower chroma).
+   Drawn on top with "screen" blending so it tints the dark surfaces,
+   including the solid social-icon footer, while light text and icons
+   stay essentially unchanged. */
+.sidebar-glow {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background: radial-gradient(
+        ellipse 140% 50% at 50% 100%,
+        oklch(0.55 0.11 355 / 0.16) 0%,
+        oklch(0.55 0.11 355 / 0.06) 45%,
+        transparent 75%
+    );
+}
