@@ -1,51 +1,54 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import HorizontalCard from "../components/HorizontalCard.astro";
+
+// Projects, grouped by section. To add a project, copy one { ... } entry into a section's list.
+//   title  - project name
+//   desc   - one or two sentences about it and your role
+//   img    - image path in /public (e.g. "/projects/my-game.webp")
+//   url    - link to the game/page ("#" for no link)
+//   badge  - optional small red tag, e.g. "NEW" or "LEAD PRODUCER" (remove the line for none)
+const sections = [
+  {
+    name: "Personal",
+    projects: [
+      {
+        title: "Prehistoria",
+        desc: "A long-standing, live-ops-focused game making continual updates since 2021.",
+        img: "/post_img.webp", // TODO: replace with a Prehistoria image
+        url: "#", // TODO: add the Roblox game link
+      },
+    ],
+  },
+  {
+    name: "Contractual",
+    projects: [
+      { title: "Contract Project 1", desc: "Placeholder: describe the project and your role.", img: "/post_img.webp", url: "#" },
+      { title: "Contract Project 2", desc: "Placeholder: describe the project and your role.", img: "/post_img.webp", url: "#" },
+    ],
+  },
+  {
+    name: "Prototypes",
+    projects: [
+      { title: "Prototype 1", desc: "Placeholder: describe the prototype and what it explored.", img: "/post_img.webp", url: "#" },
+      { title: "Prototype 2", desc: "Placeholder: describe the prototype and what it explored.", img: "/post_img.webp", url: "#" },
+    ],
+  },
+];
 ---
 
-<BaseLayout title = "Projects" sideBarActiveItemID="projects">
-  <div>
-    <div class="text-3xl w-full font-bold mb-5">Projects Header</div>
-  </div>
-
-  <HorizontalCard
-    title="Demo Project 1"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="NEW"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 2"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-
-  <div>
-    <div class="text-3xl w-full font-bold mb-5 mt-10">Projects Header</div>
-  </div>
-
-  <HorizontalCard
-    title="Demo Project 3"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-    badge="FOSS"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 4"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
-  <div class="divider my-0"></div>
-  <HorizontalCard
-    title="Demo Project 5"
-    img="/post_img.webp"
-    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-    url="#"
-  />
+<BaseLayout title="Projects" sideBarActiveItemID="projects">
+  {
+    sections.map((section, i) => (
+      <section class={i === 0 ? "" : "mt-12"}>
+        <div class="text-3xl w-full font-bold mb-5">{section.name}</div>
+        {section.projects.map((p, j) => (
+          <>
+            {j > 0 && <div class="divider my-0" />}
+            <HorizontalCard title={p.title} desc={p.desc} img={p.img} url={p.url} badge={p.badge} />
+          </>
+        ))}
+      </section>
+    ))
+  }
 </BaseLayout>

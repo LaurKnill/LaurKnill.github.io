@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+// Your skill sets. Each one gets its own card.
+//   name   - the skill set
+//   desc   - a few sentences about your experience with it (tools, projects, how long, what you've done).
+//            Put \n where you want a line break.
+//   tools  - optional list of tools/software shown as small tags (delete the line for none)
+// To add a skill set, copy a { ... } entry; to remove one, delete it; reorder by moving entries.
+const skills = [
+  {
+    name: "Game Development Leadership",
+    desc: "I can take control of a game's scope from planning to release and beyond. I know how to organize a team, their tasks, their work quality, and long-term live ops through thorough communication and organization.",
+    tools: ["Game Development", "Live-Ops", "QA Testing Lead"],
+  },
+  {
+    name: "Full-Stack Engineering",
+    desc: "I know every part of a game's systems from the back-end data processing to the front-end user experience. I work with single-script architecture with scalable, object-oriented, and modular code. I have experience with server-authoritative designs, safe data persistence, and custom networking for systems that are both secure and optimized.",
+    tools: ["Full-Stack", "Idempotency", "Server Authority", "Modular", "Anticheat", "Git", "Version Control"],
+  },
+  {
+    name: "AI-Powered, but not AI-Dependent",
+    desc: "I know how to incorporate modern tools like Claude and Codex into my workflow for rapid productivity. I also know how to use them carefully, with an eagle's eye for misinformation, AI hallucinations, or risky actions.",
+    tools: ["Claude", "Codex", "Agent Harnessing", "MCP Servers"],
+  },
+  {
+    name: "Art Design",
+    desc: "I grew up as an artist and I entered game development so that I could bring my visions to life. I excel in fantasy, cartoon, and creature design.",
+    tools: ["Art Direction", "Stylization", "Character Design"],
+  },
+  {
+    name: "3D Modeling",
+    desc: "I create low-poly 3D models with Blender. It isn't my primary skill, but it's enough to accurately assess the quality of teammates' work, apply tweaks, and finish steps myself.",
+    tools: ["Low-Poly Modeling", "Quality Assurance"],
+  },
+  {
+    name: "Cross-Platform",
+    desc: "I use a variety of devices to test from different perspectives and ensure a consistent, polished experience for all players.",
+    tools: ["PC", "Phone", "Tablet", "Console"],
+  },
+];
+---
+
+<BaseLayout title="Skills" sideBarActiveItemID="skills">
+  <div class="text-3xl w-full font-bold mb-5">Skills</div>
+
+  <div class="flex flex-col gap-4">
+    {
+      skills.map((s) => (
+        <section class="rounded-lg border border-base-300 px-5 py-4">
+          <h2 class="text-xl font-bold text-accent mb-2">{s.name}</h2>
+          <p class="leading-relaxed whitespace-pre-line">{s.desc}</p>
+          {s.tools && s.tools.length > 0 && (
+            <div class="flex flex-wrap gap-2 mt-3">
+              {s.tools.map((t) => (
+                <span class="rounded-md border border-base-300 px-2.5 py-0.5 text-sm text-accent">{t}</span>
+              ))}
+            </div>
+          )}
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+
+// Services you offer. To add one, copy a { ... } entry; to remove one, delete it.
+//   title  - service name
+//   desc   - one or two sentences on what's included
+//   img    - image path in /public (e.g. "/services/modeling.webp")
+//   url    - optional link ("#" for none, or "/contact" to send people to the Contact page)
+//   badge  - optional small red tag (remove the line for none)
+const services = [
+  { title: "Service 1", desc: "Placeholder: describe what this service includes.", img: "/post_img.webp", url: "/contact" },
+  { title: "Service 2", desc: "Placeholder: describe what this service includes.", img: "/post_img.webp", url: "/contact" },
+  { title: "Service 3", desc: "Placeholder: describe what this service includes.", img: "/post_img.webp", url: "/contact" },
+];
+---
+
+<BaseLayout title="Services" sideBarActiveItemID="services">
+  <div class="text-3xl w-full font-bold mb-5">Services</div>
+  {
+    services.map((s, i) => (
+      <>
+        {i > 0 && <div class="divider my-0" />}
+        <HorizontalCard title={s.title} desc={s.desc} img={s.img} url={s.url} badge={s.badge} target="_self" />
+      </>
+    ))
+  }
+</BaseLayout>
